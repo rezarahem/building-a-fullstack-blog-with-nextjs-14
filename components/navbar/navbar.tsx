@@ -1,8 +1,8 @@
 import Container from '../ui/container';
 import NavbarRoutes from './navbar-routes';
 import MobileMenu from './mobile-menu';
-import NavBarLogo from './navbar-logo';
 import UserAvatar from './user-avatar';
+import { NavbarLogo } from './logo';
 
 const Navbar = () => {
   return (
@@ -10,7 +10,7 @@ const Navbar = () => {
       <Container className='flex items-center justify-between' isFullHeight>
         <div className='flex items-center justify-start gap-x-6'>
           <div className=' hidden md:block'>
-            <NavBarLogo />
+            <NavbarLogo />
           </div>
           <div className='hidden md:block'>
             <NavbarRoutes />

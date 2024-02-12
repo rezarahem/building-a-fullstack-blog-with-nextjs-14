@@ -3,8 +3,8 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import NavBarLogo from './navbar-logo';
 import NavbarRoutes from './navbar-routes';
+import { NavbarLogo } from './logo';
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +32,7 @@ const MobileMenu = () => {
             className='fixed top-0 flex h-full w-64 flex-col gap-y-4 bg-gray-100 p-5 ring-0'
           >
             <div className='flex items-center justify-between'>
-              <NavBarLogo />
+              <NavbarLogo />
               <button
                 className='rounded-md hover:bg-gray-200'
                 onClick={(e) => {
