@@ -69,39 +69,41 @@ const fakedb = [
 
 const BlogPage = () => {
   return (
-    <Container className='mx-0 sm:mx-auto sm:pt-8'>
-      <div className='grid grid-cols-1 gap-8 divide-y sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-        {fakedb.map((post) => (
-          <Link
-            href='#'
-            className='flex flex-row-reverse justify-between gap-y-1 pt-8 sm:flex-col sm:rounded-md sm:border sm:pt-0 sm:shadow-lg sm:transition sm:duration-500 sm:ease-out sm:hover:scale-105 sm:hover:shadow-2xl'
-            key={post.id}
-          >
-            <div className='relative size-36 overflow-hidden rounded-md sm:size-48 sm:rounded-b-none sm:rounded-t-md lg:size-52 xl:size-60'>
-              <Image
-                src={post.image}
-                alt={post.title}
-                fill
-                sizes='50vw'
-                className='object-cover'
-              />
-            </div>
-            <div className='flex flex-col justify-between p-2'>
-              <div>
-                <h2 className='font-bold'>{post.title}</h2>
-                <p className='text-gray-600'>{post.body}</p>
+    <div>
+      <Container className='sm:pt-8'>
+        <div className='grid grid-cols-1 gap-8 divide-y sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+          {fakedb.map((post) => (
+            <Link
+              href='#'
+              className='flex flex-row-reverse justify-between gap-y-1 pt-8 sm:flex-col sm:rounded-md sm:border sm:pt-0 sm:shadow-lg sm:transition sm:duration-500 sm:ease-out sm:hover:scale-105 sm:hover:shadow-2xl'
+              key={post.id}
+            >
+              <div className='relative h-44 w-48 overflow-hidden rounded-md sm:w-full  sm:rounded-b-none sm:rounded-t-md  '>
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  sizes='50vw'
+                  className='object-cover'
+                />
               </div>
-              <div className='flex items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-2 sm:hidden'>
-                <p className='text-xs'>ادامه مطلب</p>
-                <span>
-                  <MoveLeft className='size-4' />
-                </span>
+              <div className='flex flex-col justify-between p-2'>
+                <div>
+                  <h2 className='font-bold'>{post.title}</h2>
+                  <p className='text-gray-600'>{post.body}</p>
+                </div>
+                <div className='flex items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-2 sm:hidden'>
+                  <p className='text-xs'>ادامه مطلب</p>
+                  <span>
+                    <MoveLeft className='size-4' />
+                  </span>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </Container>
+            </Link>
+          ))}
+        </div>
+      </Container>
+    </div>
   );
 };
 
