@@ -1,4 +1,5 @@
 import Container from '@/components/ui/container';
+import prismadb from '@/libs/prismadb';
 import postImgae from '@/public/post-cover.jpg';
 import { MoveLeft } from 'lucide-react';
 import Image from 'next/image';
@@ -67,14 +68,23 @@ const fakedb = [
   },
 ];
 
-const BlogPage = () => {
+const getFirstWords = (input: string, numWords: number) => {
+  const words = input.split(' ');
+  const firstWords = words.slice(0, numWords);
+
+  return firstWords.join(' ');
+};
+
+const BlogPage = async () => {
+  const posts = await prismadb.post.findMany();
+
   return (
     <div>
       <Container className='sm:pt-8'>
         <div className='grid grid-cols-1 gap-8 divide-y sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          {fakedb.map((post) => (
+          {posts.map((post) => (
             <Link
-              href='#'
+              href={`/blog/${post.address}`}
               className='flex flex-row-reverse justify-between gap-y-1 pt-8 sm:flex-col sm:rounded-md sm:border sm:pt-0 sm:shadow-lg sm:transition sm:duration-500 sm:ease-out sm:hover:scale-105 sm:hover:shadow-2xl'
               key={post.id}
             >
@@ -88,9 +98,11 @@ const BlogPage = () => {
                 />
               </div>
               <div className='flex flex-col justify-between p-2'>
-                <div>
+                <div className='space-y-3'>
                   <h2 className='font-bold'>{post.title}</h2>
-                  <p className='text-gray-600'>{post.body}</p>
+                  <p className='text-gray-600'>
+                    {getFirstWords(post.body, 10)}...
+                  </p>
                 </div>
                 <div className='flex items-center justify-center gap-x-2 rounded-full bg-gray-200 px-3 py-2 sm:hidden'>
                   <p className='text-xs'>ادامه مطلب</p>

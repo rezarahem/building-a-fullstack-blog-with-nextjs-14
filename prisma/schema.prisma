@@ -8,8 +8,9 @@ datasource db {
 }
 
 model Post {
-  id          Int    @id @unique @default(autoincrement())
-  title       String
-  description String
-  image       String
+  id      Int    @id @unique @default(autoincrement())
+  title   String
+  address String @unique
+  body    String
+  image   String
 }

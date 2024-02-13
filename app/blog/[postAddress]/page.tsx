@@ -1,6 +1,8 @@
 import Container from '@/components/ui/container';
+import prismadb from '@/libs/prismadb';
 import postImgae from '@/public/post-cover.jpg';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 const post = {
   id: 1,
@@ -9,7 +11,21 @@ const post = {
   image: postImgae,
 };
 
-const SinglePostPage = () => {
+const SinglePostPage = async ({
+  params,
+}: {
+  params: {
+    postAddress: string;
+  };
+}) => {
+  const post = await prismadb.post.findUnique({
+    where: {
+      address: decodeURI(params.postAddress),
+    },
+  });
+
+  if (!post) notFound();
+
   return (
     <div>
       <Container>
@@ -19,13 +35,14 @@ const SinglePostPage = () => {
               src={post.image}
               alt={post.title}
               fill
-              sizes='50vw'
-              className='object-cover'
+              sizes='100vw'
+              className='object-cover object-top'
+              quality={100}
             />
           </div>
           <div className='space-y-4'>
             <h1 className='text-3xl font-bold'>{post.title}</h1>
-            <p className='text-balance text-lg'>{post.body}</p>
+            <p className='text-justify text-lg'>{post.body}</p>
           </div>
         </div>
       </Container>

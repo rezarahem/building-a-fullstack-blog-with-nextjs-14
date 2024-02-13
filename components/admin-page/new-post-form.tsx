@@ -1,6 +1,6 @@
 'use client';
 
-import { CreatePostAction } from '@/actions/create-post-action';
+import { CreatePostAction } from '@/actions/post-action';
 import { useRef } from 'react';
 import { useFormStatus } from 'react-dom';
 
