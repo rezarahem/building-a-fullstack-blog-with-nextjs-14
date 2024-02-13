@@ -5,11 +5,11 @@ import Container from '@/components/ui/container';
 const AdminPage = () => {
   return (
     <div>
-      <Container>
-        <div>
+      <Container className='mt-8 flex gap-x-10'>
+        <div className='w-full p-2'>
           <NewPostForm />
         </div>
-        <div>
+        <div className='w-full p-2'>
           <AdminPostLists />
         </div>
       </Container>
