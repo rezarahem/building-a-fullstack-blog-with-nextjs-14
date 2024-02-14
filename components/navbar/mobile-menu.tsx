@@ -5,8 +5,13 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import NavbarRoutes from './navbar-routes';
 import { NavbarLogo } from './logo';
+import { Session } from 'next-auth';
 
-const MobileMenu = () => {
+type MobileMenuProps = {
+  session: Session | null;
+};
+
+const MobileMenu = ({ session }: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
@@ -45,7 +50,7 @@ const MobileMenu = () => {
             </div>
             <div className='border-b'></div>
             <div className='flex'>
-              <NavbarRoutes vertical />
+              <NavbarRoutes session={session} vertical />
             </div>
           </div>,
           document.body,

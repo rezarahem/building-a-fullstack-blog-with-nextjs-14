@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/libs/utils';
+import { Session } from 'next-auth';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -13,17 +14,14 @@ const routes = [
     label: 'بلاگ',
     path: '/blog',
   },
-  {
-    label: 'ادمین',
-    path: '/admin',
-  },
 ];
 
 type NavbarRoutesProps = {
+  session: Session | null;
   vertical?: boolean;
 };
 
-const NavbarRoutes = ({ vertical = false }: NavbarRoutesProps) => {
+const NavbarRoutes = ({ session, vertical = false }: NavbarRoutesProps) => {
   const pathname = usePathname();
   return (
     <div
@@ -42,6 +40,17 @@ const NavbarRoutes = ({ vertical = false }: NavbarRoutesProps) => {
           {label}
         </Link>
       ))}
+      {session?.user.userRole === 'ADMIN' && (
+        <Link
+          href='/admin'
+          key='admin'
+          className={cn('flex w-14 items-center justify-center py-1 text-lg', {
+            'rounded-md bg-black text-white': pathname === '/admin',
+          })}
+        >
+          ادمین
+        </Link>
+      )}
     </div>
   );
 };

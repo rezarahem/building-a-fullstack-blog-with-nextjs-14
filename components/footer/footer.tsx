@@ -61,7 +61,7 @@ const Footer = () => {
                       alt={label}
                       fill
                       sizes='33vw'
-                      className='opacity-50 invert'
+                      className='opacity-50 invert hover:opacity-100'
                     />
                   </Link>
                 </div>

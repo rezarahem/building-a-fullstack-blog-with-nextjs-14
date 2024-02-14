@@ -3,20 +3,7 @@
 import { CreatePostAction } from '@/actions/post-action';
 import { useRef } from 'react';
 import { useFormStatus } from 'react-dom';
-
-const SubmitButton = () => {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      type='submit'
-      disabled={pending}
-      className='rounded-md bg-black px-7 py-2 text-white hover:bg-gray-800 disabled:bg-gray-400'
-    >
-      ثبت
-    </button>
-  );
-};
+import SubmitButton from '../ui/submit-button';
 
 const NewPostForm = () => {
   const formRef = useRef<HTMLFormElement>(null);

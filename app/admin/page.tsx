@@ -1,8 +1,16 @@
 import AdminPostLists from '@/components/admin-page/admin-post-list';
 import NewPostForm from '@/components/admin-page/new-post-form';
 import Container from '@/components/ui/container';
+import { authOptions } from '@/libs/next-auth';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
-const AdminPage = () => {
+const AdminPage = async () => {
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session.user.usreId || session.user.userRole !== 'ADMIN')
+    redirect('/');
+
   return (
     <div>
       <Container className='mt-8 flex flex-col gap-x-10 md:flex-row'>
